@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "LabelLens AI"
+description = "An AI-assisted compliance verification workspace for inspectors and manufacturers to scan packaged product labels, review findings, and track compliance over time."
+version = "1.0.0"
+id = "artifacts/labellens-ai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18515
+
+[services.development]
+run = "pnpm --filter @workspace/labellens-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/labellens-ai", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/labellens-ai/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18515"
+BASE_PATH = "/"

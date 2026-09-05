@@ -1,10 +1,11 @@
-# [Project name]
+# LabelLens AI
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+LabelLens AI helps inspectors and manufacturers verify packaged-product labels against mandatory compliance requirements.
 
 ## Run & Operate
 
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/labellens-ai run dev` — run the LabelLens AI web app
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
@@ -22,23 +23,31 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/labellens-ai/src/pages/` — LabelLens landing, dashboard, scan, analysis, report, history, rules, analytics, and settings screens
+- `artifacts/labellens-ai/src/components/` — shared shell, upload, progress, score, status, and violation components
+- `artifacts/labellens-ai/src/data/mockData.js` — local prototype data and simulated compliance results
+- `artifacts/labellens-ai/src/index.css` — product theme, responsive layout, and visual tokens
+- `artifacts/labellens-ai/.replit-artifact/artifact.toml` — managed web artifact and workflow configuration
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The current build is a frontend-only prototype with realistic local mock data and a simulated analysis pipeline.
+- The web app is the root artifact so the preview and published site open directly to LabelLens.
+- The scan journey persists the latest scan metadata locally so report and history views remain useful after navigation or refresh.
+- The app uses wouter for workspace-compatible client-side routing and serves through the managed artifact workflow.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+LabelLens provides a public introduction, compliance dashboard, product-label upload flow, staged AI analysis animation, compliance report, scan history, rules reference, analytics, and workspace settings. The prototype uses simulated analysis results and is structured for a future API-backed implementation.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+No additional preferences recorded.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Use the managed `artifacts/labellens-ai: web` workflow rather than starting Vite from the workspace root.
+- The scan/report behavior is intentionally simulated until a real analysis service is connected.
 
 ## Pointers
 
